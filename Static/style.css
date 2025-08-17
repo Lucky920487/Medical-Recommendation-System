@@ -1,0 +1,76 @@
+ :root {
+	 /* Light theme variables */
+	 --bg: #ffffff;
+	 --text: #111827;
+	 --muted: #6b7280;
+	 --nav-bg: #0542a7; /* original navbar color */
+	 --accent: #d9534f;
+	 --card-bg: #ffffff;
+	 --modal-header-bg: #0542a7;
+ }
+ 
+ /* Dark theme overrides */
+ .dark-theme {
+	 --bg: #0b1220;
+	 --text: #e6eef8;
+	 --muted: #94a3b8;
+	 --nav-bg: #0b2545;
+	 --accent: #39adfa;
+	 --card-bg: #0f1724;
+	 --modal-header-bg: #0b2545;
+ }
+ 
+ html, body {
+	 background-color: var(--bg) !important;
+	 color: var(--text) !important;
+ }
+ 
+ /* Navbar adjustments */
+ nav.navbar {
+	 background-color: var(--nav-bg) !important;
+ }
+ 
+ .fill {
+	 background-color: var(--card-bg) !important;
+	 color: var(--text) !important;
+ }
+ 
+ .all-btn {
+	 background-color: var(--nav-bg) !important;
+	 color: #fff !important;
+ }
+ 
+ .modal-header {
+	 background-color: var(--modal-header-bg) !important;
+	 color: #fff !important;
+ }
+ 
+ .spinner {
+	 border-top-color: var(--accent) !important;
+ }
+ 
+ /* Small theme-toggle helper */
+ #theme-toggle {
+	 min-width: 40px;
+	 display: inline-flex;
+	 align-items: center;
+	 justify-content: center;
+ }
+ 
+ /* Ensure inputs adapt */
+ .form-control {
+	 background-color: rgba(255,255,255,0.04);
+	 color: var(--text) !important;
+ }
+ 
+ /* Dropdown results style */
+ #searchResults.dropdown-menu {
+	 background-color: var(--card-bg);
+	 color: var(--text);
+	 border: 1px solid rgba(0,0,0,0.08);
+ }
+ 
+ /* Loading overlay in dark theme */
+ #loading-overlay {
+	 background: rgba(0,0,0,0.6);
+ }
