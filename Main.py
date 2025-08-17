@@ -20,7 +20,8 @@ svc = pickle.load(open("models/svc.pkl", 'rb'))
 
 
 
-app = Flask(__name__)
+# Ensure Flask uses the repository's 'Static' and 'Templates' directories (capitalized folders exist in this repo)
+app = Flask(__name__, static_folder='Static', template_folder='Templates')
 
 #============================================================
 # custom and helping functions
@@ -56,7 +57,7 @@ def get_predicted_value(patient_symptoms):
 #creating routes================
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('Index.html')
 
 # Dynamic search route for AJAX
 @app.route('/search')
@@ -85,19 +86,19 @@ def predict():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('About.html')
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('Contact.html')
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')
+    return render_template('Blog.html')
 
 @app.route('/developer')
 def developer():
-    return render_template('developer.html')
+    return render_template('Developer.html')
 
 
 
