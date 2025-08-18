@@ -5,9 +5,10 @@
     box-sizing: border-box;
   }
   body {
-    background: url('https://wallpaperaccess.com/full/5301521.jpg') no-repeat center center/cover;
-    font-family: Arial, sans-serif;
-    color: #fff;
+    background: linear-gradient(120deg, #39adfa 0%, #7fd7c4 100%);
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
   }
   .overlay {
     background: rgba(0, 0, 0, 0.5);
@@ -17,33 +18,100 @@
     align-items: center;
     padding: 20px;
   }
-  .contact-container {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border-radius: 15px;
-    padding: 30px;
-    width: 100%;
-    max-width: 450px;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
+  .contact-container, .input-card, .result-card {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(30,34,44,0.12);
     animation: fadeIn 1s ease-in-out;
   }
   .form-control {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.2);
     border: none;
-    color: #fff;
+    color: #222;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(30,34,44,0.08);
+    font-style: italic;
+    font-size: 1.1rem;
+    transition: box-shadow 0.2s;
   }
   .form-control:focus {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.3);
     outline: none;
-    box-shadow: 0 0 10px #00ffcc;
+    box-shadow: 0 0 10px #39adfa;
   }
-  .btn-primary {
-    background: linear-gradient(45deg, #00bfa6, #00695c);
+  .btn-primary, .predict-btn {
+    background: linear-gradient(90deg, #7fd7c4 0%, #39adfa 100%);
+    color: #fff;
+    font-weight: bold;
     border: none;
-    transition: transform 0.3s;
+    border-radius: 12px;
+    width: 100%;
+    padding: 0.75rem 0;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 12px rgba(30,34,44,0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .btn-primary:hover {
+  .btn-primary:hover, .predict-btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 24px #39adfa55;
+  }
+  .mic-btn {
+    background: linear-gradient(90deg, #39adfa 0%, #7fd7c4 100%);
+    border: none;
+    border-radius: 50%;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0.5rem auto 1rem auto;
+    box-shadow: 0 2px 12px rgba(30,34,44,0.12);
+    animation: pulse 1.2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(39,173,250,0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(39,173,250,0); }
+    100% { box-shadow: 0 0 0 0 rgba(39,173,250,0.4); }
+  }
+  .result-card {
+    color: #222;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    max-width: 480px;
+  }
+  .result-icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+  .dark-mode {
+    --bg: #181c24;
+    --text: #f3f6fa;
+    --card: rgba(30,34,44,0.7);
+    --glass: rgba(30,34,44,0.4);
+    background: var(--bg);
+    color: var(--text);
+  }
+  .dark-mode .input-card, .dark-mode .result-card, .dark-mode .contact-container {
+    background: var(--card);
+    color: var(--text);
+  }
+  .dark-mode .form-control {
+    background: rgba(30,34,44,0.7);
+    color: var(--text);
+  }
+  .dark-mode .btn-primary, .dark-mode .predict-btn {
+    background: linear-gradient(90deg, #39adfa 0%, #7fd7c4 100%);
+    color: #fff;
+  }
+  .dark-mode .footer {
+    background: #11151c;
+    color: #f3f6fa;
+  }
+  .footer a { color: #7fd7c4; }
+  .footer a:hover { text-decoration: underline; }
+  .transition {
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
   }
   .contact-info {
     margin-top: 20px;
