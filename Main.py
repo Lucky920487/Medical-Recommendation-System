@@ -3,6 +3,7 @@ app = Flask(__name__, template_folder="Templates", static_folder="Static")
 import numpy as np
 import pandas as pd
 import pickle
+from doctor_spec import doctor_spec_bp
 
 
 #load database=============
@@ -22,6 +23,7 @@ svc = pickle.load(open("models/svc.pkl", 'rb'))
 
 
 app = Flask(__name__)
+app.register_blueprint(doctor_spec_bp)   # register blueprint
 
 #============================================================
 # custom and helping functions
@@ -125,6 +127,12 @@ def blog():
 @app.route('/developer')
 def developer():
     return render_template('Developer.html')
+
+@app.route('/doctor-speciality')
+def doctor_speciality():
+    return render_template('doctor_spec_index.html')
+
+
 
 
 
