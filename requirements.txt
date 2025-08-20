@@ -1,0 +1,11 @@
+# Core Web Framework
+Flask>=2.3.0
+
+# Data Processing and Analysis  
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Additional dependencies (will be installed automatically if needed)
+# pytz>=2023.3
+# python-dateutil>=2.8.2
+# six>=1.16.0
