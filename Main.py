@@ -52,10 +52,19 @@ def get_predicted_value(patient_symptoms):
     return diseases_list[svc.predict([input_vector])[0]]
 
 
+
 #creating routes================
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# Dynamic search route for AJAX
+@app.route('/search')
+def search():
+    query = request.args.get('q', '').lower()
+    # Example: search symptoms
+    results = [sym for sym in symptoms_dict.keys() if query in sym]
+    return {'results': results[:10]}  # Limit to 10 results
 
 
 @app.route('/predict', methods=['GET', 'POST'])

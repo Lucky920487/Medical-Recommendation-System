@@ -97,6 +97,64 @@
     </head>
   <body>
 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Health Care Center</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                </ul>
+                <form class="d-flex ms-3 position-relative" role="search">
+                    <input class="form-control me-2" id="searchInput" type="search" placeholder="Search symptoms..." aria-label="Search" autocomplete="off">
+                    <div id="searchResults" class="dropdown-menu" style="display:none; position:absolute; z-index:1000; width:100%;"></div>
+                </form>
+            </div>
+        </div>
+    </nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            searchResults.innerHTML = '';
+            return;
+        }
+        fetch(`/search?q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.results && data.results.length > 0) {
+                    searchResults.innerHTML = data.results.map(item => `<a class='dropdown-item' href='#'>${item}</a>`).join('');
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<span class="dropdown-item">No results found</span>';
+                    searchResults.style.display = 'block';
+                }
+            })
+            .catch(() => {
+                searchResults.innerHTML = '<span class="dropdown-item">Error fetching results</span>';
+                searchResults.style.display = 'block';
+            });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.style.display = 'none';
+        }
+    });
+});
+</script>
   <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0542a7;">
   <div class="container-fluid">
@@ -118,7 +176,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
+          <a class="nav-link" href="Contact.html">Contact</a>
         </li>
 
         <li class="nav-item">
@@ -144,7 +202,16 @@
       <form action="/predict" method="post">
         <div class="form-group">
           <label class="my-2" for="symptoms" style="font-size:20px;">Type Symptoms</label>
-          <input type="text" class="form-control" name="symptoms" placeholder="Enter your symptoms like itching, vomiting, nausea etc">
+        <input 
+  type="text" 
+  class="form-control" 
+  id="symptoms" 
+  name="symptoms" 
+  placeholder="Enter your symptoms like itching, vomiting, nausea etc"
+  list="symptom-suggestions" 
+  autocomplete="off">
+<datalist id="symptom-suggestions"></datalist>
+
         </div>
 
           <button type="button" id="startSpeechRecognition" class="btn btn-primary">
@@ -307,5 +374,60 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+  <script src="{{ url_for('static', filename='js/autocompleteData.js') }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const list = document.getElementById("symptom-suggestions");
+    if (!list || !window.MED_SUGGESTIONS) return;
+
+    list.innerHTML = "";
+    window.MED_SUGGESTIONS.forEach(symptom => {
+      const opt = document.createElement("option");
+      opt.value = symptom;
+      list.appendChild(opt);
+    });
+  });
+</script>
+<!-- Loading Spinner Overlay -->
+<div id="loading-overlay" style="display:none;
+     position:fixed; inset:0; background:rgba(255,255,255,0.7);
+     z-index:9999; backdrop-filter: blur(2px);">
+  <div class="spinner"></div>
+</div>
+
+<style>
+.spinner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #d9534f; /* red spinner */
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0%   { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const predictBtn = document.querySelector(".predict-btn");
+  const overlay = document.getElementById("loading-overlay");
+
+  if (predictBtn && overlay) {
+    predictBtn.addEventListener("click", function () {
+      overlay.style.display = "block";   // show spinner overlay
+      // keep it for at least 3 seconds
+      setTimeout(() => {
+        overlay.style.display = "none"; // hide after 3s (for demo)
+      }, 3000);
+    });
+  }
+});
+</script>
+
+</body>
 </html>
