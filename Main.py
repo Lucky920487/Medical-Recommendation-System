@@ -1,7 +1,9 @@
 from flask import Flask,request,render_template
+app = Flask(__name__, template_folder="Templates", static_folder="Static")
 import numpy as np
 import pandas as pd
 import pickle
+from doctor_spec import doctor_spec_bp
 
 
 #load database=============
@@ -21,6 +23,7 @@ svc = pickle.load(open("models/svc.pkl", 'rb'))
 
 
 app = Flask(__name__)
+app.register_blueprint(doctor_spec_bp)   # register blueprint
 
 #============================================================
 # custom and helping functions
@@ -67,37 +70,68 @@ def search():
     return {'results': results[:10]}  # Limit to 10 results
 
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        symptoms = request.form.get('symptoms')
-        user_symptoms = [s.strip() for s in symptoms.split(',')]
-        user_symptoms = [sym.strip("[]' ") for sym in user_symptoms]
-        predicted_disease = get_predicted_value(user_symptoms)
+    symptoms = request.form.get('symptoms')
 
-        desc, pre, med, die, wrkout = helper(predicted_disease)
+    # 1) basic validation
+    if not symptoms or not symptoms.strip():
+        return render_template('Index.html',
+                               error='Please enter at least one symptom (comma-separated).')
 
-        my_med = []
-        for i in med[0]:
-            my_med.append(i)
+    # 2) split, trim, deduplicate
+    user_symptoms = [s.strip() for s in symptoms.split(',')]
+    user_symptoms = [sym.strip("[]' ") for sym in user_symptoms]
+    seen = set()
+    user_symptoms = [s for s in user_symptoms if s and not (s in seen or seen.add(s))]
 
-        return render_template('index.html', predicted_disease = predicted_disease, dis_des=desc, dis_pre=pre, dis_med = med, dis_wrkout=wrkout, dis_diet=die)
+    # 3) validate against known symptoms (avoid KeyError later)
+    known = set(symptoms_dict.keys())
+    unknown = [s for s in user_symptoms if s not in known]
+    valid = [s for s in user_symptoms if s in known]
+
+    if not valid:
+        return render_template('Index.html',
+                               error='None of the entered symptoms are recognized. Please use suggested symptom names.',
+                               unknown=unknown)
+
+    # 4) run prediction & collect details
+    predicted_disease = get_predicted_value(valid)
+    desc, pre, med, die, wrkout = helper(predicted_disease)
+
+    # 5) surface results on the same page
+    return render_template(
+        'Index.html',
+        predicted_disease=predicted_disease,
+        dis_des=desc,
+        dis_pre=pre,
+        dis_med=med,
+        dis_diet=die,
+        dis_wrkout=wrkout,
+        unknown=unknown
+    )
+
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('About.html')
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('Contact.html')
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')
+    return render_template('Blog.html')
 
 @app.route('/developer')
 def developer():
-    return render_template('developer.html')
+    return render_template('Developer.html')
+
+@app.route('/doctor-speciality')
+def doctor_speciality():
+    return render_template('doctor_spec_index.html')
+
 
 
 
