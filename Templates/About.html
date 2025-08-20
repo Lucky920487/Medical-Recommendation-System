@@ -1,74 +1,192 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Health Care Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-          <link rel="icon" href="img (1).png">
-  </head>
-  <body>
-    <!-- Advanced Navbar for smooth navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Health Care Center</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
-            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • Health Care Assistant</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- If Flask, prefer: <link rel="icon" href="{{ url_for('static', filename='img (1).png') }}"> -->
+  <!--<link rel="icon" href="img (1).png">-->
+<link rel="icon" href="{{ url_for('static', filename='img (1).png') }}">
+
+  <style>
+    :root { --brand: #0542a7; --ink: #0b285c; }
+    body { background:#f6f9ff; }
+    .hero {
+      background: radial-gradient(1200px 400px at 10% -10%, rgba(5,66,167,.12), transparent),
+                  radial-gradient(1200px 400px at 110% 10%, rgba(5,66,167,.08), transparent),
+                  #fff;
+      border-radius: 1.25rem;
+    }
+    .chip {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.4rem .75rem; border-radius:999px; background:rgba(5,66,167,.08); color:var(--brand); font-weight:600;
+      font-size:.9rem;
+    }
+    .icon-pill {
+      width:44px; height:44px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+      background:rgba(5,66,167,.12); color:var(--brand); font-size:1.1rem;
+    }
+    .stat-card { border:0; border-radius:1rem; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+    .section-title { color:var(--ink); }
+    .list-group-item { border-left:0; border-right:0; }
+    .btn-brand { background:var(--brand); color:#fff; }
+    .btn-brand:hover { background:#032d70; color:#fff; }
+  </style>
+</head>
+<body>
+  <!-- Navbar (kept familiar) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="/">Health Care Center</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <!-- HERO -->
+    <section class="hero p-4 p-lg-5 mb-4">
+      <div class="row gy-4 align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <span class="chip"><i class="bi bi-shield-check"></i> AI-assisted Health Guidance</span>
+          <h1 class="display-6 fw-bold mt-3 mb-2 text-dark">About Medical Recommendation System</h1>
+          <p class="lead text-muted mb-3">
+            We combine medical knowledge with machine learning to provide instant, personalized
+            suggestions based on your symptoms—clear, reliable, and easy to act on.
+          </p>
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><i class="bi bi-activity me-2 text-primary"></i> Symptom-based disease prediction with ML</li>
+            <li class="list-group-item"><i class="bi bi-capsule me-2 text-primary"></i> Tailored meds, diet, workout & precautions</li>
+            <li class="list-group-item"><i class="bi bi-mic me-2 text-primary"></i> Dynamic search & speech recognition</li>
+            <li class="list-group-item"><i class="bi bi-phone me-2 text-primary"></i> Modern responsive UI across devices</li>
           </ul>
+          <a href="/" class="btn btn-brand btn-lg shadow"><i class="bi bi-rocket-takeoff me-1"></i> Try Now</a>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 text-center">
+          <img src="https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg"
+               class="img-fluid rounded shadow" alt="Medical Recommendation illustration" />
         </div>
       </div>
-    </nav>
+    </section>
 
-    <div class="container my-5">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <img src="https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg" class="img-fluid rounded shadow" alt="Medical Recommendation System">
-        </div>
-        <div class="col-md-6">
-          <h1 class="display-5 fw-bold mb-3 text-primary">About Medical Recommendation System</h1>
-          <p class="lead">Our platform leverages AI and machine learning to provide instant, personalized health recommendations based on your symptoms. We combine medical expertise, data science, and user-friendly design to empower you to make informed health decisions.</p>
-          <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item">Symptom-based disease prediction using advanced ML models</li>
-            <li class="list-group-item">Personalized recommendations for medications, diets, workouts, and precautions</li>
-            <li class="list-group-item">Dynamic search and speech recognition for easy symptom input</li>
-            <li class="list-group-item">Modern, responsive UI for seamless experience across devices</li>
-          </ul>
-          <a href="/" class="btn btn-primary btn-lg shadow">Try Now</a>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <h2 class="fw-bold text-secondary mb-3">How It Works</h2>
-          <div class="card shadow mb-3">
+    <!-- QUICK STATS -->
+    <section class="mb-4">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="card stat-card text-center py-3">
             <div class="card-body">
-              <ol class="mb-0">
-                <li>Enter your symptoms manually or via speech recognition.</li>
-                <li>Our AI model analyzes your input and predicts the most likely disease.</li>
-                <li>Receive detailed information, precautions, medications, diets, and workout suggestions tailored to your condition.</li>
-                <li>All recommendations are based on curated medical datasets and expert knowledge.</li>
-              </ol>
+              <div class="icon-pill mb-2"><i class="bi bi-people"></i></div>
+              <h5 class="mb-0">Community-Driven</h5>
+              <small class="text-muted">Built with feedback & real-world use</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card stat-card text-center py-3">
+            <div class="card-body">
+              <div class="icon-pill mb-2"><i class="bi bi-cpu"></i></div>
+              <h5 class="mb-0">ML-Powered</h5>
+              <small class="text-muted">Learning from curated medical datasets</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card stat-card text-center py-3">
+            <div class="card-body">
+              <div class="icon-pill mb-2"><i class="bi bi-shield-lock"></i></div>
+              <h5 class="mb-0">Privacy-First</h5>
+              <small class="text-muted">Designed for safety & clarity</small>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <h3 class="fw-bold text-success">Our Mission</h3>
-          <p>To make healthcare accessible, understandable, and personalized for everyone using the power of technology.</p>
+    <!-- HOW IT WORKS (Accordion) -->
+    <section class="mt-4">
+      <h2 class="fw-bold section-title mb-3">How It Works</h2>
+      <div class="accordion" id="howItWorks">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="true" aria-controls="c1">
+              1) Describe your symptoms
+            </button>
+          </h2>
+          <div id="c1" class="accordion-collapse collapse show" aria-labelledby="h1" data-bs-parent="#howItWorks">
+            <div class="accordion-body">Enter them manually or via speech recognition.</div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h3 class="fw-bold text-info">Our Vision</h3>
-          <p>Empowering individuals to take control of their health with instant, reliable, and actionable recommendations.</p>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2" aria-expanded="false" aria-controls="c2">
+              2) ML model analyzes & predicts
+            </button>
+          </h2>
+          <div id="c2" class="accordion-collapse collapse" aria-labelledby="h2" data-bs-parent="#howItWorks">
+            <div class="accordion-body">We map patterns from curated datasets to likely conditions.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3" aria-expanded="false" aria-controls="c3">
+              3) Get clear, actionable guidance
+            </button>
+          </h2>
+          <div id="c3" class="accordion-collapse collapse" aria-labelledby="h3" data-bs-parent="#howItWorks">
+            <div class="accordion-body">Precautions, meds, diets & workouts—tailored to your case.</div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- MISSION / VISION -->
+    <section class="row mt-5 gy-4">
+      <div class="col-md-6">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+          <div class="d-flex align-items-start gap-3">
+            <span class="icon-pill"><i class="bi bi-flag"></i></span>
+            <div>
+              <h3 class="fw-bold text-success mb-1">Our Mission</h3>
+              <p class="mb-0">Make healthcare accessible, understandable, and personalized for everyone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+          <div class="d-flex align-items-start gap-3">
+            <span class="icon-pill"><i class="bi bi-bullseye"></i></span>
+            <div>
+              <h3 class="fw-bold text-info mb-1">Our Vision</h3>
+              <p class="mb-0">Empower individuals with instant, reliable, and actionable recommendations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center my-5">
+      <a href="/" class="btn btn-brand btn-lg px-4"><i class="bi bi-heart-pulse me-1"></i> Start a Check</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
