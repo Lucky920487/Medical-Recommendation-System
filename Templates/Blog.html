@@ -3,26 +3,102 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Health Care Assistant</title>
-      <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/017/177/954/non_2x/round-medical-cross-symbol-on-transparent-background-free-png.png">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Blog | Health Care Assistant</title>
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/017/177/954/non_2x/round-medical-cross-symbol-on-transparent-background-free-png.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+      body { background-color: #f8f9fa; }
+      .blog-hero {
+        background: linear-gradient(to right, #e3f2fd, #ffffff);
+        padding: 60px 20px;
+        text-align: center;
+        border-radius: 12px;
+        margin-bottom: 30px;
+      }
+      .blog-hero h1 {
+        font-weight: 700;
+        color: #0d6efd;
+      }
+      .blog-hero p {
+        font-size: 1.1rem;
+        color: #555;
+      }
+      .blog-section {
+        margin-bottom: 40px;
+      }
+      .blog-section h3 {
+        color: #0d6efd;
+        margin-bottom: 15px;
+      }
+      .list-group-item {
+        border: none;
+        padding-left: 0;
+      }
+    </style>
   </head>
   <body>
-    <div class="container my-4 mt-4">
 
-        <h2 class="text-center"> Building a Symptom-Based Disease Diagnosis Web App with Flask and Machine Learning</h2>
-        <p>In the age of technology and information, access to accurate and timely healthcare is more critical than ever. With the increasing importance of remote healthcare solutions, we embarked on a journey to develop a symptom-based disease diagnosis web application. Leveraging Flask for the backend and a Decision Tree Classifier model, we created a user-friendly platform that can help users identify potential illnesses based on their reported symptoms.</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Health Care Center</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <div class="container my-4">
+
+      <!-- Blog Hero Section -->
+      <div class="blog-hero shadow-sm">
+        <h1>Building a Symptom-Based Disease Diagnosis Web App</h1>
+        <p class="lead">Using Flask, Machine Learning, and a Decision Tree Classifier</p>
+      </div>
+
+      <!-- Blog Content -->
+      <div class="card p-4 shadow-sm mb-4">
         <h3>The Problem</h3>
-        <p>The project began with recognizing a common issue: people often experience symptoms and want quick answers about their health concerns. It can be challenging to differentiate between various diseases, especially when symptoms overlap. Our goal was to provide a convenient solution for users to input their symptoms and receive potential diagnoses.</p>
+        <p>
+          People often experience symptoms and want quick answers about their health concerns. 
+          It can be challenging to differentiate between diseases, especially when symptoms overlap. 
+          Our goal was to provide a convenient solution for users to input their symptoms and receive potential diagnoses.
+        </p>
+      </div>
 
+      <div class="card p-4 shadow-sm mb-4">
         <h3>The Solution</h3>
-        <p>We developed a web app that allows users to enter a list of symptoms they are experiencing. The app then uses a pre-trained Decision Tree Classifier model to predict the most likely disease based on the provided symptoms. Here's how it works:</p>
+        <p>
+          We developed a web app that allows users to enter a list of symptoms they are experiencing. 
+          The app then uses a pre-trained Decision Tree Classifier model to predict the most likely disease.
+        </p>
 
-        <ol>
-            <li><b><strong>Symptom Input:</strong></b> Users enter their symptoms through a user-friendly interface. The web app supports a wide range of symptoms, making it versatile for different scenarios.</li>
-            <li><b><strong>Machine Learning Model:</strong></b> We trained a Decision Tree Classifier using a dataset containing symptoms and corresponding diseases. The model is capable of predicting diseases based on input symptoms.</li>
-            <li><b><strong>Prediction:</strong></b> The app uses the model to predict the most likely disease, providing users with instant information about potential health concerns.</li>
-            <li><b><strong>Additional Information: </strong></b> To enhance user experience, the app also provides additional information about the predicted disease. This includes a description of the disease, recommended precautions, medications, dietary advice, and workout tips.</li>
+        <ul class="list-group list-group-flush mt-3">
+          <li class="list-group-item">💡 <strong>Symptom Input:</strong> Users enter symptoms through a user-friendly interface.</li>
+          <li class="list-group-item">🤖 <strong>Machine Learning Model:</strong> Trained using a dataset of symptoms and diseases.</li>
+          <li class="list-group-item">⚡ <strong>Prediction:</strong> Instant results provided to the user.</li>
+          <li class="list-group-item">📚 <strong>Additional Info:</strong> Includes disease details, precautions, diet, and workout tips.</li>
+        </ul>
+      </div>
 
-        </ol>
+      <!-- Author Section -->
+      <div class="text-center mt-5">
+        <img src="static/lucky_kumari_pfp.png" alt="Lucky Kumari" class="rounded-circle mb-3" width="100" height="100">
+        <p class="mb-0"><b>Maintained by Lucky Kumari</b></p>
+        <p class="text-muted">Developer • IIT Patna</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
