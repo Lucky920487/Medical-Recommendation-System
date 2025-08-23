@@ -73,6 +73,7 @@ def predict():
         symptoms = request.form.get('symptoms')
         user_symptoms = [s.strip() for s in symptoms.split(',')]
         user_symptoms = [sym.strip("[]' ") for sym in user_symptoms]
+        user_symptoms = [normalize_input(s) for s in user_symptoms]
         predicted_disease = get_predicted_value(user_symptoms)
 
         desc, pre, med, die, wrkout = helper(predicted_disease)
@@ -104,3 +105,12 @@ def developer():
 # python main
 if __name__=="__main__":
     app.run(debug=True)
+
+
+def normalize_input(symptom):
+    return symptom.strip().lower().replace(" ", "_")
+def symptoms():
+    symptoms_dict = {
+        normalize_input(symptom): index
+        for index, symptom in enumerate(symptoms)
+        }
