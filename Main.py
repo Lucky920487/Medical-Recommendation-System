@@ -74,6 +74,7 @@ def predict():
 
         return render_template('index.html', predicted_disease = predicted_disease, dis_des=desc, dis_pre=pre, dis_med = med, dis_wrkout=wrkout, dis_diet=die)
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
