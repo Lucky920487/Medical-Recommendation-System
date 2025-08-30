@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>✅ Quick Wellness Self-Check</h2>
+<p>Answer these quick questions to get a wellness tip.</p>
+
+<form method="POST">
+  <div class="mb-3">
+    <label for="stress" class="form-label">How stressed are you today? (0-10)</label>
+    <input type="number" class="form-control" id="stress" name="stress" min="0" max="10" required>
+  </div>
+  <div class="mb-3">
+    <label for="sleep" class="form-label">How many hours did you sleep last night?</label>
+    <input type="number" class="form-control" id="sleep" name="sleep" min="0" max="12" required>
+  </div>
+  <div class="mb-3">
+    <label for="mood" class="form-label">How is your overall mood? (0-10)</label>
+    <input type="number" class="form-control" id="mood" name="mood" min="0" max="10" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Get My Wellness Tip</button>
+</form>
+
+{% if tip %}
+<hr>
+<div class="alert alert-success mt-3">
+  {{ tip }}
+</div>
+{% endif %}
+{% endblock %}

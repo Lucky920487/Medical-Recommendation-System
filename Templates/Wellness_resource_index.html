@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🌿 Wellness Resource Hub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/wellness">🌿 Wellness Hub</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/wellness/affirmation">Affirmation</a>
+            <a class="nav-link" href="/wellness/self-check">Self-Check</a>
+            <a class="nav-link" href="/wellness/planner">Planner</a>
+            <a class="nav-link" href="/wellness/mood">Mood Tracker</a>
+            <a class="nav-link" href="/wellness/resources">Resources</a>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <h2>🌿 Welcome to Wellness Resource Hub</h2>
+        <p>Explore categories below:</p>
+        <div class="row">
+          {% for cat, tips in categories.items() %}
+          <div class="col-md-4">
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ cat }}</h5>
+                <ul>
+                  {% for tip in tips %}
+                  <li>{{ tip }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="alert alert-success mt-3">
+          <strong>Affirmation:</strong> {{ affirmation }}
+        </div>
+    </div>
+</body>
+</html>
