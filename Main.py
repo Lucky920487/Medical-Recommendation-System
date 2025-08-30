@@ -6,6 +6,11 @@ import pickle
 from doctor_spec import doctor_spec_bp
 
 
+from wellness_resource import wellness_bp   # ✅ import wellness blueprint
+
+
+
+
 #load database=============
 sym_des = pd.read_csv("Dataset/symptoms_df.csv")
 precautions = pd.read_csv("Dataset/precautions_df (1).csv")
@@ -24,7 +29,7 @@ svc = pickle.load(open("models/svc.pkl", 'rb'))
 
 app = Flask(__name__)
 app.register_blueprint(doctor_spec_bp)   # register blueprint
-
+app.register_blueprint(wellness_bp, url_prefix="/wellness")  # 👈 add prefix
 #============================================================
 # custom and helping functions
 #==========================helper functions================
@@ -138,6 +143,10 @@ def developer():
 @app.route('/doctor-speciality')
 def doctor_speciality():
     return render_template('doctor_spec_index.html')
+
+@app.route('/Wellness-Resource')
+def wellness_resourcehub():
+    return render_template('Wellness_resource_index.html')
 
 
 

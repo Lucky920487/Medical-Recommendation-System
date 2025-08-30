@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📅 Daily Planner</h2>
+<p>Plan your day with simple goals.</p>
+
+<form method="POST" class="mb-3">
+  <input type="text" class="form-control" name="task" placeholder="Add a new task..." required>
+  <button type="submit" class="btn btn-success mt-2">➕ Add Task</button>
+</form>
+
+<h4>✅ Your Tasks</h4>
+<ul class="list-group">
+  {% for task in tasks %}
+  <li class="list-group-item">{{ task }}</li>
+  {% else %}
+  <li class="list-group-item text-muted">No tasks yet. Add one above.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📊 Mood Tracker</h2>
+<p>Log your daily mood and track progress.</p>
+
+<form method="POST" class="mb-3">
+  <select class="form-select" name="mood" required>
+    <option value="😊 Happy">😊 Happy</option>
+    <option value="😐 Okay">😐 Okay</option>
+    <option value="😟 Stressed">😟 Stressed</option>
+    <option value="😢 Sad">😢 Sad</option>
+  </select>
+  <button type="submit" class="btn btn-primary mt-2">Log Mood</button>
+</form>
+
+<h4>📅 Mood History</h4>
+<ul class="list-group">
+  {% for entry in moods %}
+  <li class="list-group-item">{{ entry }}</li>
+  {% else %}
+  <li class="list-group-item text-muted">No moods logged yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

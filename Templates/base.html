@@ -1,0 +1,30 @@
+<!-- Templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wellness Hub{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/wellness">🌿 Wellness Hub</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/wellness/affirmation">Affirmation</a>
+                <a class="nav-link" href="/wellness/self-check">Self-Check</a>
+                <a class="nav-link" href="/wellness/planner">Planner</a>
+                <a class="nav-link" href="/wellness/mood">Mood Tracker</a>
+                <a class="nav-link" href="/wellness/resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
+
