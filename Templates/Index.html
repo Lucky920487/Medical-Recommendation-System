@@ -91,6 +91,45 @@
         box-shadow: 0px 0px 12px white;
         transform: scale(1.08);
         }
+        /* Floating Chatbot Button */
+.chatbot-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Hover Effect */
+.chatbot-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.07);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: Pulse Animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
+
+.chatbot-btn {
+    animation: pulse 2s infinite;
+}
     </style>
   </head>
   <body>
@@ -280,6 +319,21 @@
             </div>
         </div>
     </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('chatbot_page') }}">
+        <button style="
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;">
+            💬 Try Our AI Healthcare Chatbot
+        </button>
+    </a>
+</div>
 
     <script>
         const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
@@ -305,5 +359,9 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Floating Chatbot Button -->
+<a href="{{ url_for('chatbot_page') }}" class="chatbot-btn" title="Talk to our AI Healthcare Chatbot">
+    💬 Chat with AI
+</a>
   </body>
 </html>

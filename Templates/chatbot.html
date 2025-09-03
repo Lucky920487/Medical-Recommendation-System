@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f7ff;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .messages { max-height: 400px; overflow-y: auto; }
+        .user { color: blue; font-weight: bold; }
+        .bot { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>💬 Healthcare Chatbot</h2>
+        <div class="messages" id="messages"></div>
+        <input type="text" id="userInput" placeholder="Ask me about symptoms, medications, etc..." />
+        <button id="sendBtn">Send</button>
+    </div>
+
+    <script>
+        const messages = document.getElementById("messages");
+        const sendBtn = document.getElementById("sendBtn");
+        const userInput = document.getElementById("userInput");
+
+        sendBtn.addEventListener("click", async () => {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            messages.innerHTML += `<p class="user">You: ${message}</p>`;
+            userInput.value = "";
+
+            const res = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message }),
+            });
+
+            const data = await res.json();
+            if (data.reply) {
+                messages.innerHTML += `<p class="bot">Bot: ${data.reply}</p>`;
+            } else {
+                messages.innerHTML += `<p class="bot">Error: ${data.error}</p>`;
+            }
+
+            messages.scrollTop = messages.scrollHeight;
+        });
+    </script>
+</body>
+</html>
