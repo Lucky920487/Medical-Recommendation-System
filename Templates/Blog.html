@@ -3,102 +3,168 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog | Health Care Assistant</title>
+    <title>Health Care Assistant - Blog</title>
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/017/177/954/non_2x/round-medical-cross-symbol-on-transparent-background-free-png.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
     <style>
-      body { background-color: #f8f9fa; }
-      .blog-hero {
-        background: linear-gradient(to right, #e3f2fd, #ffffff);
-        padding: 60px 20px;
-        text-align: center;
-        border-radius: 12px;
-        margin-bottom: 30px;
+      body {
+        background-color: #f0f6ff;
+        font-family: 'Segoe UI', sans-serif;
       }
-      .blog-hero h1 {
-        font-weight: 700;
+      .blog-card {
+        background: linear-gradient(145deg, #ffffff, #f3f8ff);
+        border-radius: 18px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        padding: 40px;
+        margin-top: 40px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+      }
+      h2, h3 {
         color: #0d6efd;
+        font-weight: 600;
       }
-      .blog-hero p {
+      h2 {
+        font-size: 1.8rem;
+      }
+      h3 {
+        margin-top: 25px;
+        font-size: 1.4rem;
+      }
+      .lead {
         font-size: 1.1rem;
-        color: #555;
+        line-height: 1.7;
+        color: #444;
       }
-      .blog-section {
-        margin-bottom: 40px;
-      }
-      .blog-section h3 {
+      .section-icon {
+        font-size: 1.3rem;
+        margin-right: 8px;
         color: #0d6efd;
-        margin-bottom: 15px;
       }
-      .list-group-item {
-        border: none;
-        padding-left: 0;
+      .hero-banner {
+        background: linear-gradient(135deg, #0d6efd, #5ba9ff);
+        color: white;
+        text-align: center;
+        padding: 70px 20px;
+        border-radius: 0 0 60px 60px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
+      .hero-banner h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+      }
+      .accordion-button {
+        border-radius: 12px !important;
+      }
+      .accordion-button:not(.collapsed) {
+        background-color: #e9f3ff;
+        color: #0d6efd;
+        font-weight: 500;
+      }
+      .alert {
+        border-radius: 12px;
+        font-style: italic;
       }
     </style>
   </head>
   <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Health Care Center</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/blog">Blog</a></li>
-          </ul>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <h1>🩺 Health Care Blog</h1>
+      <p class="lead">Exploring AI, Healthcare & Innovation</p>
+    </section>
+
+    <div class="container">
+      <div class="blog-card">
+        <h2 class="mb-3 text-center">
+          Building a Symptom-Based Disease Diagnosis Web App with Flask and Machine Learning
+        </h2>
+        <p class="lead">
+          In today’s digital era, access to timely and accurate healthcare is more critical than ever.
+          With the rise of telemedicine, we set out to build a <b>symptom-based disease diagnosis web app</b>
+          powered by Flask and Machine Learning. Using a <b>Decision Tree Classifier</b>,
+          our platform helps users identify potential illnesses quickly based on their symptoms.
+        </p>
+
+        <!-- Problem Section -->
+        <h3><i class="bi bi-exclamation-circle-fill section-icon"></i>The Problem</h3>
+        <p>
+          People often face overlapping symptoms and struggle to understand what condition they might be dealing with.
+          Our challenge was to build a tool that provides <b>quick, reliable, and understandable insights</b>
+          without replacing professional consultation.
+        </p>
+
+        <!-- Solution Section -->
+        <h3><i class="bi bi-lightbulb-fill section-icon"></i>The Solution</h3>
+        <p>
+          We designed a web app that predicts possible diseases from user-input symptoms.
+          The system combines <b>data-driven AI models</b> with an intuitive UI to make healthcare more accessible.
+        </p>
+
+        <div class="accordion my-3" id="solutionSteps">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                1. Symptom Input
+              </button>
+            </h2>
+            <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#solutionSteps">
+              <div class="accordion-body">
+                Users enter symptoms in a simple, user-friendly form that supports a wide variety of conditions.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                2. Machine Learning Model
+              </button>
+            </h2>
+            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#solutionSteps">
+              <div class="accordion-body">
+                A <b>Decision Tree Classifier</b> trained on medical datasets predicts possible diseases.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                3. Prediction & Insights
+              </button>
+            </h2>
+            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#solutionSteps">
+              <div class="accordion-body">
+                The system instantly returns the most probable diagnosis, along with additional insights.
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
 
-    <div class="container my-4">
-
-      <!-- Blog Hero Section -->
-      <div class="blog-hero shadow-sm">
-        <h1>Building a Symptom-Based Disease Diagnosis Web App</h1>
-        <p class="lead">Using Flask, Machine Learning, and a Decision Tree Classifier</p>
-      </div>
-
-      <!-- Blog Content -->
-      <div class="card p-4 shadow-sm mb-4">
-        <h3>The Problem</h3>
+        <!-- Additional Info -->
+        <h3><i class="bi bi-info-circle-fill section-icon"></i> Beyond Prediction</h3>
         <p>
-          People often experience symptoms and want quick answers about their health concerns. 
-          It can be challenging to differentiate between diseases, especially when symptoms overlap. 
-          Our goal was to provide a convenient solution for users to input their symptoms and receive potential diagnoses.
-        </p>
-      </div>
-
-      <div class="card p-4 shadow-sm mb-4">
-        <h3>The Solution</h3>
-        <p>
-          We developed a web app that allows users to enter a list of symptoms they are experiencing. 
-          The app then uses a pre-trained Decision Tree Classifier model to predict the most likely disease.
+          Along with predictions, our app provides <b>disease details, recommended precautions, medication suggestions,
+          dietary guidelines,</b> and <b>workout tips</b>. This ensures that users get holistic insights
+          to support healthier lifestyles.
         </p>
 
-        <ul class="list-group list-group-flush mt-3">
-          <li class="list-group-item">💡 <strong>Symptom Input:</strong> Users enter symptoms through a user-friendly interface.</li>
-          <li class="list-group-item">🤖 <strong>Machine Learning Model:</strong> Trained using a dataset of symptoms and diseases.</li>
-          <li class="list-group-item">⚡ <strong>Prediction:</strong> Instant results provided to the user.</li>
-          <li class="list-group-item">📚 <strong>Additional Info:</strong> Includes disease details, precautions, diet, and workout tips.</li>
-        </ul>
-      </div>
-
-      <!-- Author Section -->
-      <div class="text-center mt-5">
-        <img src="static/lucky_kumari_pfp.png" alt="Lucky Kumari" class="rounded-circle mb-3" width="100" height="100">
-        <p class="mb-0"><b>Maintained by Lucky Kumari</b></p>
-        <p class="text-muted">Developer • IIT Patna</p>
+        <!-- Closing Quote -->
+        <div class="alert alert-primary mt-4" role="alert">
+          <i class="bi bi-quote"></i>
+          <em>“AI in healthcare is not about replacing doctors — it’s about empowering people with better information.”</em>
+        </div>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
