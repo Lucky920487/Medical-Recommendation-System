@@ -1,109 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Health Care Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/017/177/954/non_2x/round-medical-cross-symbol-on-transparent-background-free-png.png">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <!-- Advanced Navbar for smooth navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow mb-4">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Health Care Center</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
-            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url('https://wallpaperaccess.com/full/5301521.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    .overlay {
+      background-color: rgba(0,0,0,0.6);
+      min-height: 100vh;
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+    .card-custom {
+      border-radius: 16px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+    }
+    .contact-form input, .contact-form textarea {
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    /* Toast */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;} 
+      to {bottom: 30px; opacity: 1;}
+    }
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;} 
+      to {bottom: 0; opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0542a7;">
+    <div class="container-fluid">
+      <div class="logo">
+        <img class="myimg" src="{{url_for('static', filename='img (1).png')}}" alt="" style="width:40px; height:40px; border-radius:20px;">
       </div>
-    </nav>
-
-    <div class="container my-5">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <img src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-2299.jpg" class="img-fluid rounded shadow" alt="Contact Us">
-        </div>
-        <div class="col-md-6">
-          <h1 class="display-5 fw-bold mb-3 text-primary">Contact Us</h1>
-          <p class="lead">Have questions or need assistance? We're here to help! Our dedicated support team is available to assist you with any inquiries, feedback, or technical issues.</p>
-          <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item"><b>Email:</b> healthcare@gmail.com</li>
-            <li class="list-group-item"><b>Phone:</b> 1234567890</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-md-8 mx-auto">
-          <div class="card shadow">
-            <div class="card-body">
-              <h4 class="fw-bold text-secondary mb-3">Send Us a Message</h4>
-              <form>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" placeholder="Your Name">
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Your Email">
-                </div>
-                <div class="mb-3">
-                  <label for="message" class="form-label">Message</label>
-                  <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="overlay">
-      <div class="contact-container">
-        <h1 class="text-center mb-3">Contact Us</h1>
-        <p class="text-center mb-4">Have questions about your health? We're here to help you 24/7. Fill out the form or use the contact details below.</p>
-        <form id="contactForm">
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
-          </div>
-          <div class="mb-3">
-            <label for="query" class="form-label">Your Query</label>
-            <textarea id="query" class="form-control" rows="3" placeholder="Type your query here" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary w-100" id="submit-btn">Submit</button>
+      <a class="navbar-brand ms-2" href="#">Health Care Center</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
         </form>
-        <div class="contact-info mt-4">
-          <h5>Get in Touch</h5>
-          <p>Email: <a href="mailto:contact@healthcareassistant.com">contact@healthcareassistant.com</a></p>
-          <p>Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
-          <p>Opening Hours: Mon - Sat | 9:00 AM - 8:00 PM</p>
-          <div class="social-links">
-            <a href="#" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-            <a href="#" title="Twitter"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
-            <a href="#" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="overlay">
+    <div class="container">
+      <h1 class="text-center text-white mb-4">Contact Us</h1>
+      <div class="card card-custom bg-white p-4">
+        <div class="row">
+          <!-- Contact Info -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h2 class="fw-bold">We’d love to hear from you!</h2>
+            <p class="text-muted">Our support team is here to assist you with inquiries, feedback, or technical issues.</p>
+            <p><strong>Email:</strong> healthcare@gmail.com</p>
+            <p><strong>Phone:</strong> +91 1234567890</p>
+          </div>
+          <!-- Contact Form -->
+          <div class="col-md-6 contact-form">
+            <h3 class="fw-semibold mb-3">Send us a Message</h3>
+            <form onsubmit="showToast(event)">
+              <input type="text" class="form-control mb-3" placeholder="Your Name" required>
+              <input type="email" class="form-control mb-3" placeholder="Your Email" required>
+              <textarea rows="5" class="form-control mb-3" placeholder="Your Message" required></textarea>
+              <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <script src="script.js"> </script>
-  </body>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">✅ Your message has been sent!</div>
+
+  <script>
+    function showToast(event) {
+      event.preventDefault();
+      var toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
+      event.target.reset();
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
