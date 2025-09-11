@@ -60,7 +60,7 @@ emergency_symptoms = ['chest_pain', 'breathlessness', 'unconsciousness','severe_
 #creating routes================
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('Index.html')
 
 # Dynamic search route for AJAX
 @app.route('/search')
